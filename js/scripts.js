@@ -1,10 +1,18 @@
 // ------------------------------- business logic ---------------------------------------------
 
-// var UserAccount = [userOne, userTwo]
+var UserAccount = [];
+UserAccount.push($("#nameOne").val())
+UserAccount.push($("#nameTwo").val())
 
-// UserAccount.prototype.changeUser() = function() {
-//
-// }
+var turn = 0
+
+function swapUser () {
+  if (turn === 0) {
+    turn = 1;
+  } else {
+    turn = 0;
+  }
+}
 
 // Under here, this works for sinlge player but not for two players
 function Player (name) {
@@ -17,11 +25,11 @@ Player.prototype.dicePlay = function () {
   console.log(score);
   if (score === 1) {
     this.currentScore = 0
-    console.log(this.currentScore);
+    // console.log(this.currentScore);
   }
   if (score > 1 && this.currentScore < 20){
     this.currentScore += score
-    console.log("here" + this.currentScore);
+    // console.log("here" + this.currentScore);
   }
   if (this.currentScore >= 20) {
     alert("Wow, You win!")
@@ -31,70 +39,28 @@ Player.prototype.dicePlay = function () {
 
 // ------------------------------- user interface logic ---------------------------------------
 $(document).ready(function() {
-  var inputNameOne = $("#nameOne").val();
-  var inputNameTwo = $("#nameTwo").val();
+  var playerOne = new Player(name)
+  var playerTwo = new Player(name)
 
-  var currentPlay = new Player(name)
   $("#play").click(function (event) {
     event.preventDefault();
+    var inputNameOne = $("#nameOne").val();
+    var inputNameTwo = $("#nameTwo").val();
+    console.log(inputNameOne);
+    // console.log(inputNameTwo);
+    if (turn === 0) {
+      var scoreOne = playerOne.dicePlay();
+      $("#userOne").text(inputNameOne);
+      $("#playOne").text(scoreOne);
+    }
+    if (turn === 1) {
+      var scoreTwo = playerTwo.dicePlay();
+      $("#userTwo").text(inputNameTwo);
+      $("#playTwo").text(scoreTwo);
+    }
+  });
 
-    var scoreOne = currentPlay.dicePlay();
-    var scoreTwo = currentPlay.dicePlay();
-
-    $("#userOne").text(inputNameOne);
-    $("#playOne").text(scoreOne);
-
-    $("#userTwo").text(inputNameTwo);
-    $("#playTwo").text(scoreTwo);
-  })
-  // $("#hold").click(function (event) {
-  //   event.preventDefault();
-  //   var yourAccout = UserAccount.changeUser();
-  //   $("#userName").text(inputName);
-  //   $("#currentPlay").text(yourScore);
-  // })
-})
-
-// var allPlayer = new PlayerAccount();
-//
-// function PlayerAccount () {
-//   this.accounts = []
-// }
-//
-// PlayerAccount.prototype.updateAccount = function () {
-//   this.accounts.push()
-// }
-//
-// function PlayerOne (name) {
-//   this.nameOne = nameOne;
-//   this.initialScore = 0;
-//   this.scoreOne = score;
-// }
-//
-// PlayerOne.prototype.roll(score) {
-//   var score = Math.floor((Math.random()*6) + 1);
-//   if (score === 1) {
-//     this.scoreOne = this.initialScore
-//     console.log(this.scoreOne);
-//   } else {
-//     this.scoreOne += score
-//     console.log(this.scoreOne);
-//   }
-// }
-//
-// PlayerOne.prototype.hold() {
-//
-// }
-
-// $(document).ready(function () {
-//   $("").submit(function (event) {
-//     event.preventDefault();
-//     var inputPlayerOne = $("").val();
-//     var inputPlayerTwo = $("").val();
-//     var currentPlayer = new PlayerOne(inputPlayerOne);
-//     $(".clickable").click(function() {
-//       $("#").fadeToggle();
-//       $("#").fadeToggle();
-//     });
-//   });
-// });
+  $("#hold").click(function () {
+    swapUser()
+  });
+});
