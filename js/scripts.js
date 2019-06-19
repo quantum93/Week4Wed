@@ -24,6 +24,9 @@ function Player (name) {
 Player.prototype.dicePlay = function (diceNumber) {
   var score = 0;
   for (var i = 1; i <= diceNumber; i++) {
+    // for score variable, "var" is intentionally ommitted to reuse it in if condition with the result
+    // of for loop. If we use "var score" in here, the score vaiable in for loop renew whenever in/out
+    // for loop. So, the result of for loop for score variable is not transfered to score in if condition.
     score += Math.floor((Math.random()*6) + 1);
   }
   // console.log(score);
