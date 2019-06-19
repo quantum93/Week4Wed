@@ -21,19 +21,20 @@ function Player (name) {
 }
 
 Player.prototype.dicePlay = function () {
-  var score = Math.floor((Math.random()*6) + 1);
+  var diceOne = Math.floor((Math.random()*6) + 1);
+  var diceTwo = Math.floor((Math.random()*6) + 1);
+  var score = diceOne + diceTwo
   // console.log(score);
   if (score === 1) {
     this.currentScore = 0
     swapUser()
-    console.log(turn);
     // console.log(this.currentScore);
   }
-  if (score > 1 && this.currentScore < 30){
+  if (score > 1 && this.currentScore < 100){
     this.currentScore += score
     // console.log("here" + this.currentScore);
   }
-  if (this.currentScore >= 30) {
+  if (this.currentScore >= 100) {
     alert("Wow, You win!")
   }
   return this.currentScore
