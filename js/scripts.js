@@ -25,13 +25,14 @@ Player.prototype.dicePlay = function () {
   console.log(score);
   if (score === 1) {
     this.currentScore = 0
+    swapUser()
     // console.log(this.currentScore);
   }
-  if (score > 1 && this.currentScore < 20){
+  if (score > 1 && this.currentScore < 30){
     this.currentScore += score
     // console.log("here" + this.currentScore);
   }
-  if (this.currentScore >= 20) {
+  if (this.currentScore >= 30) {
     alert("Wow, You win!")
   }
   return this.currentScore
