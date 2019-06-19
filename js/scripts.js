@@ -22,10 +22,11 @@ function Player (name) {
 
 Player.prototype.dicePlay = function () {
   var score = Math.floor((Math.random()*6) + 1);
-  console.log(score);
+  // console.log(score);
   if (score === 1) {
     this.currentScore = 0
     swapUser()
+    console.log(turn);
     // console.log(this.currentScore);
   }
   if (score > 1 && this.currentScore < 30){
@@ -47,7 +48,7 @@ $(document).ready(function() {
     event.preventDefault();
     var inputNameOne = $("#nameOne").val();
     var inputNameTwo = $("#nameTwo").val();
-    console.log(inputNameOne);
+    // console.log(inputNameOne);
     // console.log(inputNameTwo);
     if (turn === 0) {
       var scoreOne = playerOne.dicePlay();
@@ -61,7 +62,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#hold").click(function () {
+  $(".hold").click(function () {
     swapUser()
   });
 });
